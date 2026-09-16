@@ -29,8 +29,8 @@ export const Home: React.FC = () => {
             className="w-full h-full object-cover object-center opacity-30 mix-blend-luminosity scale-105 transform animate-pulse duration-[8000ms]"
           />
           {/* Contrast-protecting gradient */}
-          <div className="absolute inset-0 bg-gradient-to-b from-navy-950/90 via-navy-900/80 to-[#082B52]" />
-          <div className="absolute -top-40 right-0 w-[500px] h-[500px] bg-brand-orange/15 rounded-full blur-3xl pointer-events-none" />
+          {/* <div className="absolute inset-0 bg-gradient-to-b from-navy-950/90 via-navy-900/80 to-[#082B52]" />
+          <div className="absolute -top-40 right-0 w-[500px] h-[500px] bg-brand-orange/15 rounded-full blur-3xl pointer-events-none" /> */}
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">

@@ -6,10 +6,12 @@ import { BottomNav } from '../components/common/BottomNav';
 import { ToastContainer } from '../components/common/ToastContainer';
 import { NotificationDrawer } from '../components/common/NotificationDrawer';
 import { AuthModal } from '../components/common/AuthModal';
+import { ScrollToTop } from '../components/common/ScrollToTop';
 
 export const MainLayout: React.FC = () => {
   return (
     <div className="min-h-screen flex flex-col bg-[#F8FAFC]">
+      <ScrollToTop />
       <Header />
       <main className="flex-1">
         <Outlet />

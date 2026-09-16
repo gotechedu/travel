@@ -5,6 +5,7 @@ import { Car } from '../types';
 import { VehicleCard } from '../components/car/VehicleCard';
 import { Car as CarIcon, Users, Filter, Plus, ArrowRight, ShieldCheck, Sparkles } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { GroupQuoteWizard } from '../components/group/GroupQuoteWizard';
 
 export const CarSearch: React.FC = () => {
   const [cars, setCars] = useState<Car[]>([]);
@@ -65,11 +66,10 @@ export const CarSearch: React.FC = () => {
                 key={cat.id}
                 type="button"
                 onClick={() => setSelectedCategory(cat.id)}
-                className={`px-4 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition-all ${
-                  selectedCategory === cat.id
+                className={`px-4 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition-all ${selectedCategory === cat.id
                     ? 'bg-brand-orange text-white shadow-sm'
                     : 'bg-white/10 text-slate-200 hover:bg-white/20'
-                }`}
+                  }`}
               >
                 {cat.label}
               </button>
@@ -124,6 +124,12 @@ export const CarSearch: React.FC = () => {
           </div>
         )}
       </div>
+
+      {fleetItems.length > 0 && (
+        <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-20 mb-20'>
+          <GroupQuoteWizard />
+        </div>
+      )}
     </div>
   );
 };

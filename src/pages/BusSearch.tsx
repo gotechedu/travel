@@ -6,6 +6,7 @@ import { BusCard } from '../components/bus/BusCard';
 import { BusFilters } from '../components/bus/BusFilters';
 import { ArrowLeftRight, Filter, SlidersHorizontal, ArrowUpDown, Bus as BusIcon, Calendar, MapPin } from 'lucide-react';
 import { setFrom, setTo, swapLocations } from '../store/searchSlice';
+import { GroupQuoteWizard } from '../components/group/GroupQuoteWizard';
 
 export const BusSearch: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -196,6 +197,10 @@ export const BusSearch: React.FC = () => {
             )}
           </main>
         </div>
+      </div>
+
+      <div className='mt-20'>
+        <GroupQuoteWizard />
       </div>
     </div>
   );

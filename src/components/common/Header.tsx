@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { 
-  Bus, Train, Plane, Car, Users, HeartHandshake, Building2, 
-  Bell, HelpCircle, Ticket, Menu, X, User as UserIcon, LogOut, ChevronDown 
+import {
+  Bus, Train, Plane, Car, Users, HeartHandshake, Building2,
+  Bell, HelpCircle, Ticket, Menu, X, User as UserIcon, LogOut, ChevronDown
 } from 'lucide-react';
 import { useAppDispatch, useAppSelector } from '../../store/store';
 import { openAuthModal, toggleNotificationDrawer, toggleMobileMenu, closeMobileMenu } from '../../store/uiSlice';
@@ -27,14 +27,14 @@ export const Header: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const navLinks = [
+  const navLinks: Array<{ label: string; path: string; icon: React.ElementType; badge?: string }> = [
+    { label: 'Cars', path: '/cars', icon: Car },
     { label: 'Buses', path: '/buses', icon: Bus },
     { label: 'Flights', path: '/flights', icon: Plane },
     { label: 'Trains', path: '/trains', icon: Train },
-    { label: 'Cars', path: '/cars', icon: Car },
-    { label: 'Group Booking', path: '/group-booking', icon: Users, badge: 'Popular' },
-    { label: 'Wedding & Events', path: '/wedding-travel', icon: HeartHandshake, badge: 'Fleet' },
-    { label: 'Corporate', path: '/corporate-travel', icon: Building2 },
+    // { label: 'Group Booking', path: '/group-booking', icon: Users, badge: 'Popular' },
+    // { label: 'Wedding & Events', path: '/wedding-travel', icon: HeartHandshake, badge: 'Fleet' },
+    // { label: 'Corporate', path: '/corporate-travel', icon: Building2 },
   ];
 
   const handleLogout = () => {
@@ -46,11 +46,10 @@ export const Header: React.FC = () => {
   return (
     <>
       <header
-        className={`sticky top-0 z-40 transition-all duration-300 ${
-          isScrolled
-            ? 'bg-navy-900/95 backdrop-blur-md shadow-lg py-2.5 border-b border-navy-800'
-            : 'bg-navy-900 py-3.5 border-b border-navy-800/80'
-        }`}
+        className={`sticky top-0 z-40 transition-all duration-300 ${isScrolled
+          ? 'bg-navy-900/95 backdrop-blur-md shadow-lg py-2.5 border-b border-navy-800'
+          : 'bg-navy-900 py-3.5 border-b border-navy-800/80'
+          }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between gap-4">
@@ -78,11 +77,10 @@ export const Header: React.FC = () => {
                   <Link
                     key={item.path}
                     to={item.path}
-                    className={`relative flex items-center gap-2 px-3 py-2 rounded-xl text-xs font-semibold transition-all ${
-                      isActive
-                        ? 'bg-brand-blue text-white shadow-xs'
-                        : 'text-slate-200 hover:text-white hover:bg-white/10'
-                    }`}
+                    className={`relative flex items-center gap-2 px-3 py-2 rounded-xl text-xs font-semibold transition-all ${isActive
+                      ? 'bg-brand-blue text-white shadow-xs'
+                      : 'text-slate-200 hover:text-white hover:bg-white/10'
+                      }`}
                   >
                     <Icon className={`w-4 h-4 ${isActive ? 'text-brand-orange' : 'text-slate-300'}`} />
                     <span>{item.label}</span>
@@ -212,9 +210,8 @@ export const Header: React.FC = () => {
                     key={item.path}
                     to={item.path}
                     onClick={() => dispatch(closeMobileMenu())}
-                    className={`flex items-center gap-2.5 p-3 rounded-xl text-xs font-semibold ${
-                      isActive ? 'bg-brand-orange text-white' : 'bg-navy-800 text-slate-200 hover:bg-navy-700'
-                    }`}
+                    className={`flex items-center gap-2.5 p-3 rounded-xl text-xs font-semibold ${isActive ? 'bg-brand-orange text-white' : 'bg-navy-800 text-slate-200 hover:bg-navy-700'
+                      }`}
                   >
                     <Icon className="w-4 h-4" />
                     <span>{item.label}</span>
