@@ -1,0 +1,252 @@
+import { Bus, BusSeat } from '../types';
+
+const generateSeats = (basePrice: number): BusSeat[] => {
+  const seats: BusSeat[] = [];
+  // Lower deck: 15 seats (Seater 2+1 layout)
+  for (let r = 1; r <= 5; r++) {
+    seats.push({
+      id: `L${r}A`,
+      number: `L${r}A`,
+      deck: 'lower',
+      type: 'seater',
+      isAvailable: !(r === 2 || r === 4),
+      price: basePrice,
+      isLadiesOnly: r === 1,
+      row: r,
+      col: 1,
+    });
+    seats.push({
+      id: `L${r}B`,
+      number: `L${r}B`,
+      deck: 'lower',
+      type: 'seater',
+      isAvailable: r !== 3,
+      price: basePrice,
+      row: r,
+      col: 2,
+    });
+    seats.push({
+      id: `L${r}C`,
+      number: `L${r}C`,
+      deck: 'lower',
+      type: 'seater',
+      isAvailable: true,
+      price: basePrice,
+      row: r,
+      col: 4, // Aisle in col 3
+    });
+  }
+
+  // Upper deck: 10 sleeper berths (2+1 layout)
+  for (let r = 1; r <= 5; r++) {
+    seats.push({
+      id: `U${r}A`,
+      number: `U${r}A`,
+      deck: 'upper',
+      type: 'sleeper',
+      isAvailable: r !== 1,
+      price: basePrice + 350,
+      row: r,
+      col: 1,
+    });
+    seats.push({
+      id: `U${r}B`,
+      number: `U${r}B`,
+      deck: 'upper',
+      type: 'sleeper',
+      isAvailable: true,
+      price: basePrice + 350,
+      row: r,
+      col: 2,
+    });
+    seats.push({
+      id: `U${r}C`,
+      number: `U${r}C`,
+      deck: 'upper',
+      type: 'sleeper',
+      isAvailable: r !== 5,
+      price: basePrice + 350,
+      row: r,
+      col: 4,
+    });
+  }
+
+  return seats;
+};
+
+export const MOCK_BUSES: Bus[] = [
+  {
+    id: 'bus-1',
+    operatorName: 'Singh Royal Travels (Multi-Axle)',
+    busType: 'Volvo 9600 Multi-Axle A/C Sleeper (2+1)',
+    category: 'sleeper',
+    isAC: true,
+    departureTime: '21:30',
+    arrivalTime: '06:00',
+    duration: '8h 30m',
+    fromCity: 'Lucknow',
+    toCity: 'Delhi',
+    boardingPoints: [
+      { id: 'bp-1', location: 'Alambagh Bus Terminal, Gate 2', time: '21:30', landmark: 'Near Metro Station' },
+      { id: 'bp-2', location: 'Transport Nagar Metro, Lucknow', time: '22:00' },
+      { id: 'bp-3', location: 'Agra-Lucknow Expressway Toll Plaza', time: '22:45' },
+    ],
+    droppingPoints: [
+      { id: 'dp-1', location: 'Akshardham Metro Station, Delhi', time: '05:30' },
+      { id: 'dp-2', location: 'Kashmere Gate ISBT', time: '06:00' },
+      { id: 'dp-3', location: 'Dhaula Kuan', time: '06:30' },
+    ],
+    price: 1199,
+    originalPrice: 1499,
+    rating: 4.8,
+    reviewCount: 342,
+    totalSeats: 30,
+    availableSeats: 18,
+    amenities: ['AC', 'Charging Point', 'WiFi', 'Blanket', 'Reading Light', 'Water Bottle', 'Emergency Exit'],
+    liveTracking: true,
+    seats: generateSeats(1199),
+  },
+  {
+    id: 'bus-2',
+    operatorName: 'Shri Ram Rath Express',
+    busType: 'BharatBenz A/C Seater / Sleeper (2+1)',
+    category: 'sleeper',
+    isAC: true,
+    departureTime: '22:45',
+    arrivalTime: '07:15',
+    duration: '8h 30m',
+    fromCity: 'Lucknow',
+    toCity: 'Delhi',
+    boardingPoints: [
+      { id: 'bp-4', location: 'Polytechnic Chauraha, Indira Nagar', time: '22:45' },
+      { id: 'bp-5', location: 'Nahariya Chauraha, Awadh Bus Stand', time: '23:15' },
+    ],
+    droppingPoints: [
+      { id: 'dp-4', location: 'Anand Vihar ISBT', time: '07:00' },
+      { id: 'dp-5', location: 'Kashmere Gate Metro Gate 5', time: '07:30' },
+    ],
+    price: 949,
+    originalPrice: 1199,
+    rating: 4.6,
+    reviewCount: 218,
+    totalSeats: 30,
+    availableSeats: 11,
+    amenities: ['AC', 'Charging Point', 'Blanket', 'Pillow', 'Water Bottle'],
+    liveTracking: true,
+    seats: generateSeats(949),
+  },
+  {
+    id: 'bus-3',
+    operatorName: 'Singh Express Highway Fleet',
+    busType: 'Scania High-Deck Semi-Sleeper A/C',
+    category: 'semi-sleeper',
+    isAC: true,
+    departureTime: '17:00',
+    arrivalTime: '20:30',
+    duration: '3h 30m',
+    fromCity: 'Lucknow',
+    toCity: 'Ayodhya',
+    boardingPoints: [
+      { id: 'bp-6', location: 'Polytechnic Flyover, Lucknow', time: '17:00' },
+      { id: 'bp-7', location: 'Matiyari Chauraha, Chinhat', time: '17:25' },
+    ],
+    droppingPoints: [
+      { id: 'dp-6', location: 'Ayodhya Dham Bus Stand', time: '20:15' },
+      { id: 'dp-7', location: 'Ram Mandir Access Road Crossing', time: '20:30' },
+    ],
+    price: 499,
+    originalPrice: 650,
+    rating: 4.9,
+    reviewCount: 520,
+    totalSeats: 30,
+    availableSeats: 22,
+    amenities: ['AC', 'Charging Point', 'Reclining Seats', 'Water Bottle', 'Music System'],
+    liveTracking: true,
+    seats: generateSeats(499),
+  },
+  {
+    id: 'bus-4',
+    operatorName: 'Purvanchal Superfast Gold',
+    busType: 'Volvo B11R Multi-Axle Sleeper AC',
+    category: 'sleeper',
+    isAC: true,
+    departureTime: '20:00',
+    arrivalTime: '02:30',
+    duration: '6h 30m',
+    fromCity: 'Gorakhpur',
+    toCity: 'Lucknow',
+    boardingPoints: [
+      { id: 'bp-8', location: 'Gorakhpur Railway Station Bus Bay', time: '20:00' },
+      { id: 'bp-9', location: 'Nausad Chauraha', time: '20:30' },
+    ],
+    droppingPoints: [
+      { id: 'dp-8', location: 'Polytechnic Chauraha, Lucknow', time: '02:00' },
+      { id: 'dp-9', location: 'Charbagh / Alambagh', time: '02:30' },
+    ],
+    price: 799,
+    originalPrice: 999,
+    rating: 4.7,
+    reviewCount: 189,
+    totalSeats: 30,
+    availableSeats: 14,
+    amenities: ['AC', 'WiFi', 'Charging Point', 'Blanket', 'Emergency SOS'],
+    liveTracking: true,
+    seats: generateSeats(799),
+  },
+  {
+    id: 'bus-5',
+    operatorName: 'Kashi Vishwanath Luxury Liner',
+    busType: 'BharatBenz A/C Seater (2+2)',
+    category: 'seater',
+    isAC: true,
+    departureTime: '06:00',
+    arrivalTime: '11:45',
+    duration: '5h 45m',
+    fromCity: 'Varanasi',
+    toCity: 'Lucknow',
+    boardingPoints: [
+      { id: 'bp-10', location: 'Cantt Bus Stand, Varanasi', time: '06:00' },
+      { id: 'bp-11', location: 'Babatpur Airport Crossing', time: '06:40' },
+    ],
+    droppingPoints: [
+      { id: 'dp-10', location: 'Alambagh Terminal, Lucknow', time: '11:45' },
+    ],
+    price: 649,
+    rating: 4.5,
+    reviewCount: 144,
+    totalSeats: 30,
+    availableSeats: 19,
+    amenities: ['AC', 'Comfortable Seats', 'Charging Point', 'Water Bottle'],
+    liveTracking: false,
+    seats: generateSeats(649),
+  },
+  {
+    id: 'bus-6',
+    operatorName: 'Pink City Highway Star',
+    busType: 'Volvo 9600 A/C Multi-Axle Sleeper',
+    category: 'sleeper',
+    isAC: true,
+    departureTime: '23:00',
+    arrivalTime: '05:00',
+    duration: '6h 00m',
+    fromCity: 'Delhi',
+    toCity: 'Jaipur',
+    boardingPoints: [
+      { id: 'bp-12', location: 'Dhaula Kuan Metro', time: '23:00' },
+      { id: 'bp-13', location: 'IFFCO Chowk, Gurgaon', time: '23:45' },
+    ],
+    droppingPoints: [
+      { id: 'dp-11', location: 'Sindhi Camp Bus Stand, Jaipur', time: '04:45' },
+      { id: 'dp-12', location: 'Narayan Singh Circle', time: '05:00' },
+    ],
+    price: 850,
+    originalPrice: 1100,
+    rating: 4.8,
+    reviewCount: 420,
+    totalSeats: 30,
+    availableSeats: 16,
+    amenities: ['AC', 'WiFi', 'Charging Point', 'Blanket', 'Water Bottle', 'Snack Pack'],
+    liveTracking: true,
+    seats: generateSeats(850),
+  }
+];

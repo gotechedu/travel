@@ -1,0 +1,56 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  body {
+    background-color: #F8FAFC;
+    color: #0F172A;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #F1F5F9;
+}
+::-webkit-scrollbar-thumb {
+  background: #CBD5E1;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94A3B8;
+}
+
+/* Glassmorphic and gradient utilities */
+.glass-nav {
+  background: rgba(8, 43, 82, 0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.card-hover-effect {
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.card-hover-effect:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 32px -4px rgba(8, 43, 82, 0.12);
+}
+
+/* Hero background overlay */
+.hero-gradient {
+  background: linear-gradient(180deg, rgba(8, 43, 82, 0.88) 0%, rgba(8, 43, 82, 0.72) 60%, rgba(8, 43, 82, 0.92) 100%);
+}
+
+.booking-card-shadow {
+  box-shadow: 0 20px 45px -10px rgba(8, 43, 82, 0.15), 0 0 0 1px rgba(226, 232, 240, 0.8);
+}
